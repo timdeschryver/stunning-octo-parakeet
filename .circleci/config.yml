@@ -31,7 +31,7 @@ jobs:
             - ~/.cache/yarn
             - node_modules
       - persist_to_workspace:
-          root: dist-gh-pages
+          root: /dist-gh-pages
           paths:
             - projects/example-app/dist/*
             - stackblitz.html
