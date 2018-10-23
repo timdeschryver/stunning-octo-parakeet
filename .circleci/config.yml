@@ -43,8 +43,6 @@ jobs:
       - restore_cache:
           key: *cache_key
       - run: yarn
-      - attach_workspace:
-          at: dist-gh-pages
       - run: yarn run deploy:gh-pages
 
 workflows:

@@ -77,7 +77,7 @@ export async function publishToRepo(config: Config) {
  * Deploy example app to GitHub Pages
  */
 export async function publishToGitHubPages() {
-  const SOURCE_DIR = `./dist-gh-pages`;
+  // const SOURCE_DIR = `./dist-gh-pages`;
   const REPO_URL = `git@github.com:timdeschryver/stunning-octo-parakeet.git`;
   const REPO_DIR = `./tmp/gh-pages`;
   const SHA = await util.git([`rev-parse HEAD`]);
@@ -97,11 +97,10 @@ export async function publishToGitHubPages() {
   await util.git(['fetch origin gh-pages --depth=1']);
   await util.git(['checkout origin/gh-pages']);
   await util.git(['checkout -b gh-pages']);
-  await process.chdir('../../');
   await util.cmd('rm -rf', [`${REPO_DIR}/*`]);
   await util.git([`log --format="%h %s" -n 1 > ${REPO_DIR}/commit_message`]);
-  await util.cmd('cp', [`-R ${SOURCE_DIR}/dist/* ${REPO_DIR}/example-app`]);
-  await util.cmd('cp', [`-R ${SOURCE_DIR}/stackblitz.html ${REPO_DIR}`]);
+  await util.cmd('cp', [`-R ./projects/example-app/dist ${REPO_DIR}/example-app`]);
+  await util.cmd('cp', [`-R ./stackblitz.html ${REPO_DIR}`]);
   await process.chdir(`${REPO_DIR}`);
   await util.git([`config user.name "${COMMITTER_USER_NAME}"`]);
   await util.git([`config user.email "${COMMITTER_USER_EMAIL}"`]);
