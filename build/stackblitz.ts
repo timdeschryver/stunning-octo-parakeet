@@ -43,7 +43,8 @@ const EXAMPLE_FILES = [
         files: ${JSON.stringify(files)
           .replace(/\\r\\n/g, '')
           .replace(/\\n/g, '')
-          .replace(/projects\/example-app/g, 'example-app')},
+          .replace(/projects\/example-app/g, 'example-app')
+          .replace(/example-app\/src/g, 'example-app')},
         title: 'stunning-octo-parakeet Example App',
         description: 'stunning-octo-parakeet example application with common patterns and best practices',
         template: 'angular-cli',
