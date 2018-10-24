@@ -1,5 +1,6 @@
 import * as globby from 'globby';
 import * as fs from 'fs';
+import { packages as ngrxPackages } from './config';
 
 const EXAMPLE_FILES = [
   '!**',
@@ -25,7 +26,11 @@ const EXAMPLE_FILES = [
   const packageJson = JSON.parse(fs.readFileSync('package.json', 'utf-8'));
   const dependencies = packageJson.dependencies;
   const version = packageJson.version;
-
+  const ngrxDependencies = ngrxPackages
+    .map(pkg => pkg.name)
+    .reduce((packages, packageName) => {
+      return { ...packages, [`@ngrx/${packageName}`]: version };
+    }, {});
 
   const template = `
     <html>
@@ -41,9 +46,10 @@ const EXAMPLE_FILES = [
         title: 'stunning-octo-parakeet Example App',
         description: 'stunning-octo-parakeet example application with common patterns and best practices',
         template: 'angular-cli',
-        tags: ['angular', 'stunning-octo-parakeet', 'redux', 'example'],
+        tags: ['angular', 'ngrx', 'redux', 'example'],
         dependencies: ${JSON.stringify({
           ...dependencies,
+          ...ngrxDependencies,
         })}
       };
 
