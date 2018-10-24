@@ -98,6 +98,7 @@ export async function publishToGitHubPages() {
   await util.git(['checkout origin/gh-pages']);
   await util.git(['checkout -b gh-pages']);
   await util.cmd('rm -rf', [`${REPO_DIR}/*`]);
+  await util.cmd('mkdir', [`${REPO_DIR}/commit_message`]);
   await util.git([`log --format="%h %s" -n 1 > ${REPO_DIR}/commit_message`]);
   await util.cmd('cp', [`-R ./projects/example-app/dist ${REPO_DIR}/example-app`]);
   await util.cmd('cp', [`-R ./stackblitz.html ${REPO_DIR}`]);
