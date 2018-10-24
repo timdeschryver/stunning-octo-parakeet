@@ -100,6 +100,7 @@ export async function publishToGitHubPages() {
   await process.chdir('../../');
   await util.cmd('rm -rf', [`${REPO_DIR}/*`]);
   await util.git([`log --format="%h %s" -n 1 > ${REPO_DIR}/commit_message`]);
+  await util.cmd('ls', []);
   await util.cmd('cp', [`-R ./projects/example-app/dist ${REPO_DIR}/example-app`]);
   await util.cmd('cp', [`-R ./stackblitz.html ${REPO_DIR}`]);
   await process.chdir(`${REPO_DIR}`);
