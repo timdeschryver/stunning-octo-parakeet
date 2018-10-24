@@ -41,8 +41,6 @@ const EXAMPLE_FILES = [
     <script>
       const project = {
         files: ${JSON.stringify(files)
-          .replace(/\\r\\n/g, '')
-          .replace(/\\n/g, '')
           .replace(/projects\/example-app/g, 'example-app')
           .replace(/example-app\/src/g, 'example-app')},
         title: 'stunning-octo-parakeet Example App',
