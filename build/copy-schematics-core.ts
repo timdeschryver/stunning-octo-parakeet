@@ -8,7 +8,7 @@ const copySchematics = createBuilder([
 
 copySchematics({
   scope: 'stunning-octo-parakeet',
-  packages: packages(),
+  packages: packages,
 }).catch(err => {
   console.error(err);
   process.exit(1);

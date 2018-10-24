@@ -10,7 +10,7 @@ export interface Config {
 }
 
 export const modulesDir = './modules/';
-export const packages = (): PackageDescription[] => fs
+export const packages: PackageDescription[] = fs
   .readdirSync(modulesDir)
   .filter(path => {
     const stat = fs.statSync(`${modulesDir}${path}`);

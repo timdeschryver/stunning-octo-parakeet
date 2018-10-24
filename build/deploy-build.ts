@@ -6,7 +6,7 @@ const deploy = createBuilder([['Deploy builds', tasks.publishToRepo]]);
 
 deploy({
   scope: 'stunning-octo-parakeet',
-  packages: packages(),
+  packages: packages,
 }).catch(err => {
   console.error(err);
   process.exit(1);
